@@ -127,8 +127,7 @@ impl Context {
         let mut attr = MaybeUninit::<ucp_context_attr>::uninit();
         unsafe { &mut *attr.as_mut_ptr() }.field_mask =
             (ucp_context_attr_field::UCP_ATTR_FIELD_REQUEST_SIZE
-                | ucp_context_attr_field::UCP_ATTR_FIELD_THREAD_MODE
-                | ucp_context_attr_field::UCP_ATTR_FIELD_MEMORY_TYPES)
+                | ucp_context_attr_field::UCP_ATTR_FIELD_THREAD_MODE)
                 .0 as u64;
         let status = unsafe { ucp_context_query(self.handle, attr.as_mut_ptr()) };
         assert_eq!(status, ucs_status_t::UCS_OK);

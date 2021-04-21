@@ -15,8 +15,6 @@ impl MemoryHandle {
             address: region.as_ptr() as _,
             length: region.len() as _,
             flags: 0,
-            prot: 0,
-            memory_type: ucs_memory_type::UCS_MEMORY_TYPE_HOST,
         };
         let mut handle = MaybeUninit::uninit();
         let status = unsafe { ucp_mem_map(context.handle, &params, handle.as_mut_ptr()) };
